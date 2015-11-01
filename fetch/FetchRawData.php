@@ -18,6 +18,7 @@ class FetchRawData extends Fetch{
             $cookiesStr .= $key . '=' . $cookiesValue . ';';
         }
         curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 240);
         curl_setopt($ch, CURLOPT_COOKIE, $cookiesStr);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Expect:"));
         curl_setopt($ch, CURLOPT_POST, 1);
