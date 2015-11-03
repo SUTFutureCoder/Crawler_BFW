@@ -13,14 +13,7 @@ fscanf(STDIN, '%d', $type);
 
 $tempCookiesKey     = '';
 $tempCookiesData    = '';
-$cookiesArray = array();
-echo 'Please input the key and value of cookies devided by blank, end of # #' . PHP_EOL;
-while (fscanf(STDIN, '%s%s', $tempCookiesKey, $tempCookiesData) 
-        && ($tempCookiesKey != '#' && $tempCookiesData != '#')){
-    $cookiesArray[] = array(
-        'key'   => $tempCookiesKey,
-        'value' => $tempCookiesData,
-    );
-}
+$cookiesArray = include 'cookies.php';
+
 
 fetch\FetchFactory::fetchData($type)->getData($cookiesArray);

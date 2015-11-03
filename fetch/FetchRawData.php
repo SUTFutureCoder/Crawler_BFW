@@ -14,16 +14,17 @@ class FetchRawData extends Fetch{
         $ch = curl_init();
         
         $cookiesStr = '';
-        foreach ($cookies as $cookiesValue){
-            $cookiesStr .= $cookiesValue['key'] . '=' . $cookiesValue['value'] . ';';
+        foreach ($cookies as $key => $cookiesValue){
+            $cookiesStr .= $key . '=' . $cookiesValue . ';';
         }
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_COOKIE, $cookiesStr);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Expect:"));
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $result = curl_exec($ch);
-        print_r($result);
         curl_close($ch);
+        return $result;
     }
 }
